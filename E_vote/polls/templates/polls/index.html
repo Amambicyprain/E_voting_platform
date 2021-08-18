@@ -1,0 +1,160 @@
+{% extends "polls/base_generic.html" %}
+{% load thumbnail %}
+
+{% block content %}
+{% block style%}
+ <style>
+      /* Default height for small devices */
+      #intro {
+        height: 350px;
+        /* Margin to fix overlapping fixed navbar */
+        margin-top: 58px;
+      }
+      @media (max-width: 991px) {
+              #intro {
+              /* Margin to fix overlapping fixed navbar */
+              margin-top: 45px;
+        }
+      }
+    </style>
+    {% endblock%}
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+        <!-- Section: Main chart -->
+        <div class="card mb-4 text-center text-info">
+            <div class="card-body">
+                <h3><strong>WELCOME To GOTTALENT 2021</strong></h3>
+            </div>
+        </div>
+        <div class="card mb-4 text-center text-info">
+            <div class="card-body">
+                <p><strong>HERE ARE THE TOP FOUR CANDIDATES</strong></p>
+            </div>
+        </div>
+        <section>
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                    {% thumbnail top_four_candidates.0.candidate_image "100x100" as im %}
+                                    <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                </div>
+                                <div class="text-center " style="color:green">
+                                    <h3>{{top_four_candidates.0}}</h3>
+                                    <p class="mb-0">{{top_four_candidates.0.vote}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                    {% thumbnail top_four_candidates.1.candidate_image "100x100" as im %}
+                                    <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                </div>
+                                <div class="text-center text-success " >
+                                    <h3> {{top_four_candidates.1}}</h3>
+                                    <p class="mb-0">{{top_four_candidates.1.vote}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                     {% thumbnail top_four_candidates.2.candidate_image "100x100" as im %}
+                                    <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                </div>
+                                <div class="text-end " style="color:#98fb98 ">
+                                   <h3> {{top_four_candidates.2}}</h3>
+                                    <p class="mb-0">{{top_four_candidates.2.vote}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                    {% thumbnail top_four_candidates.3.candidate_image "100x100" as im %}
+                                    <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                </div>
+                                <div class="text-center " style="color:#d0f0c0 ">
+                                       <h3> {{top_four_candidates.3}}</h3>
+                                    <h3>{{top_four_candidates.3.vote}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div id="intro" class="p-5 text-center bg-image shadow-1-strong" style="background-image: url('https://mdbootstrap.com/img/new/slides/205.jpg');">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <div class="text-white px-4">
+                                    <h1 class="mb-3">Votting Ends Soon!</h1>
+                                    <!-- Time Counter -->
+                                    <h3 id="time-counter" class="border border-light my-4 p-4"></h3>
+                                    <p>Vote for your Favorite candidate befor its too late</p>
+                                    <p>Each Vote cost 100frs</p>
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</main>
+{% block script%}
+    <script type="text/javascript">
+      // Set the date we're counting down to
+      var countDownDate = new Date();
+      countDownDate.setDate(countDownDate.getDate() + 30);
+
+      // Update the count down every 1 second
+      var x = setInterval(function () {
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById('time-counter').innerHTML =
+          days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById('time-counter').innerHTML = 'EXPIRED';
+        }
+      }, 1000);
+    </script>
+ {% endblock%}
+{% endblock %}

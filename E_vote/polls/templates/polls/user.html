@@ -1,0 +1,116 @@
+{% extends "catalog/base_generic.html" %}
+{% block content%}
+{% load static %}
+<div class="container mt-5 ">
+    <div class="row d-flex justify-content-end mt-5">
+        <div class="col-xl-9   ">
+            <div class="card col ">
+                <img src="https://mdbootstrap.com/img/new/slides/024.jpg" class="card-img-top" alt="..." style="height: 250px; " />
+                <div class="card-body pt-3">
+                    <div class="d-flex align-items-center mb-5">
+                        <div class="flex-shrink-0">
+                            <img src=" {% static 'catalog/img/cy.jpg' %}" class="rounded-circle" alt="" style="width: 155px; height: 155px; margin-top: -90px; border: 4px solid #fff;" />
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <p class="fw-bold mb-2 h5">Joanna Doe</p>
+                            <p class="text-muted mb-0">
+                                <i class="fas fa-map-marker-alt me-2"></i>john.doe@gmail.com
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Tabs navs -->
+                    <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1" role="tab" aria-controls="ex1-tabs-1" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false">Security</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="ex1-tab-3" data-mdb-toggle="tab" href="#ex1-tabs-3" role="tab" aria-controls="ex1-tabs-3" aria-selected="false">logs</a>
+                        </li>
+                    </ul>
+                    <!-- Tabs navs -->
+                    <!-- Tabs content -->
+                    <div class="tab-content" id="ex1-content">
+                        <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                            <table class="table table-striped table-hover table-bordered table-sm table-light border-light">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S/N</th>
+                                        <th scope="col">Book title</th>
+                                        <th scope="col">Available copies</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for author in authors%}
+                                    <tr>
+                                        <th scope="row">{{author.id}}</th>
+                                        <td><a href="{% url 'author_detail' author.id%}">{{author.author_name}}</a></td>
+                                        <td>{{number_available_book}}</td>
+                                    </tr>
+                                    {% endfor%}
+                                </tbody>
+                                <caption>
+                                    Captions of the table
+                                </caption>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                            <table class="table table-striped table-hover table-bordered table-sm table-light border-light">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S/N</th>
+                                        <th scope="col">Book title</th>
+                                        <th scope="col">Available copies</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for author in authors%}
+                                    <tr>
+                                        <th scope="row">{{author.id}}</th>
+                                        <td><a href="{% url 'author_detail' author.id%}">{{author.author_name}}</a></td>
+                                        <td>{{number_available_book}}</td>
+                                    </tr>
+                                    {% endfor%}
+                                </tbody>
+                                <caption>
+                                    Captions of the table
+                                </caption>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                            <table class="table table-striped table-hover table-bordered table-sm table-light border-light">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">S/N</th>
+                                        <th scope="col">Book title</th>
+                                        <th scope="col">Available copies</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for author in authors%}
+                                    <tr>
+                                        <th scope="row">{{author.id}}</th>
+                                        <td><a href="{% url 'author_detail' author.id%}">{{author.author_name}}</a></td>
+                                        <td>{{number_available_book}}</td>
+                                    </tr>
+                                    {% endfor%}
+                                </tbody>
+                                <caption>
+                                    Captions of the table
+                                </caption>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Tabs content -->
+                </div>
+                <div class="card-footer border-0 bg-light py-4 overflow-hidden">
+                    <p class="text-muted">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

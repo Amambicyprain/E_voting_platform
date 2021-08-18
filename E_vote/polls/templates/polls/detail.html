@@ -1,0 +1,35 @@
+{% extends "polls/base_generic.html" %}
+{% block content %}
+      <main>
+          <div class="card text-center " style="margin-top:80px; height: 90vh;">
+              <div class="card-body">
+                <h3>Vote statistics so far</h3>
+                  <div class="table-responsive mt-5">
+                  <table class="table table-striped table-hover table-bordered table-sm table-light border-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col">Candidate's number</th>
+                        <th scope="col">Candidate's name</th>
+                        <th scope="col">vote</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for candidate in candidates%}
+                      <tr>
+                        <td scope="row">{{candidate.candidate_number}}</td>
+                        <td>{{candidate.Choice_text}}</td>
+                        <td>{{candidate.vote}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+
+                    <caption>
+                      Captions of the table
+                    </caption>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </main>
+  <!--Main layout-->
+ {% endblock %}
