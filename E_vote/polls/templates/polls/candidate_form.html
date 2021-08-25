@@ -1,0 +1,64 @@
+{% extends "polls/base_generic.html" %}
+{% block content%}
+    <div id="intro" class="shadow-2-strong py-5">
+    <!-- <div class="mask d-flex align-items-center h-100" style="background-color:lightgrey;"> -->
+        <div class="container " >
+            <div class="row justify-content-end  ">
+                <div class="col-xl-10 col-md-10 ">
+                    <form class="bg-white rounded shadow-5-strong p-5 mt-5" method="POST" action="{% url 'add_candidate' %}" enctype="multipart/form-data">
+                        <p class="text-danger text-center"></p>
+                        {% csrf_token %}
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form1Example1" class="form-control" name="candidate_name" />
+                            <label class="form-label" for="form1Example1" name="candidate_name">Candidate's name</label>
+                        </div>
+                         <div class="form-outline mb-4">
+                            <input type="email" id="form1Example1" class="form-control" name="candidate_email" />
+                            <label class="form-label" for="form1Example1" name="candidate_name">Candidate's E-mail</label>
+                        </div>
+                         <div class="form mb-4">
+                            <label class="form-label" for="form1Example1" name="candidate_name">Candidate's status</label>
+                            <select class="form-select shadow-none" aria-label="Default select example" name="candidate_status">
+                              <option selected>select candidate's status</option>
+                              <option value="1">Married</option>
+                              <option value="2">Single</option>
+                              <option value="3">Divorced</option>
+                              <option value="3">Widowed</option>
+                              <option value="3">Complicated</option>
+                            </select>
+                        </div>
+                         <div class="form mb-4">
+                             <label class="form-label" for="form1Example1" name="candidate_name">Candidate's date of birth</label>
+                            <input type="date" id="form1Example1" class="form-control" name="candidate_date_birth" />
+                           
+                        </div>
+                         <div class="form-outline mb-4">
+                            <input type="number" id="form1Example1" class="form-control" name="candidate_tel" />
+                            <label class="form-label" for="form1Example1" name="candidate_name">Candidate's phone number</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form1Example1" class="form-control" name="candidate_role" />
+                            <label class="form-label" for="form1Example1" name="candidate_role">candidate's role</label>
+                        </div>
+                         <div class="form-outline mb-4">
+                            <input type="text" id="form1Example1" class="form-control" name="candidate_carrier_history" />
+                            <label class="form-label" for="form1Example1" >candidate's carrier history</label>
+                        </div>
+                        <div class="form mb-4">
+                            <label class="form-label" for="form1Example1" name="candidate_number"></label>
+                            <input type="number" id="form1Example1" class="form-control" name="candidate_number" placeholder="candidate's number" />
+                        </div>
+                        <div class="form mb-4">
+                            <label class="form-label" for="form1Example1" name="candidate_image">candidate's image</label>
+                            <input type="file" id="form1Example1" class="form-control" name="candidate_image" />
+                        </div>
+                        <span></span>
+                        <button type="submit" class="btn btn-block text-white mb-4" style="background-color: #ffba00;">add candidate</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock%}

@@ -1,37 +1,41 @@
 {% extends "polls/base_generic.html" %}
 {% load static %}
 {% block content%}
-        <div id="intro" class="shadow-2-strong">
-            <div class="mask d-flex align-items-center h-100" style="background-color:lightgrey;">
-                <div class="container">
-                    <div class="row justify-content-end mt-5">
-                        <div class="col-xl-10 col-md-10 mt-3">
-                            <form class="bg-white rounded shadow-5-strong p-5" method="POST" action="">
-                                <div class=" row justify-content-between">
-                                    <div class="col-sm-4 " style="border:2px solid black;">
-                                          <img src="{% static 'polls/img/momo.png' %}" style="width:100%;">
-                                    </div>
-                                     <div class="col-sm-4 "style="border:2px solid black;">
-                                          <img src="{% static 'polls/img/orange.png' %}" style="width:100%;">
-                                    </div>
-                                </div>
-                                <h3 class="text-danger text-center">Total Bill: 100 cfa</h3>
-                                {% csrf_token %}                           
-                                 <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label">phone number</label>
-                                  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="momo or orange money">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="exampleFormControlInput1" class="form-label"> number of votes</label>
-                                  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1">
-                                </div>
-                                 
-                                <button type="submit" class="btn btn-block text-white" style="background-color: #4a148c;">vote</button>
-                            </form>
+<div id="intro" class="shadow-2-strong">
+    <div class="mask d-flex align-items-center h-100" style="background-color:lightgrey;">
+        <div class="container">
+            <div class="row justify-content-end mt-5">
+                <div class="col-xl-10 col-md-10 mt-3">
+                    <form class="bg-white rounded shadow-5-strong p-5" method="POST" action="{% url 'collect_payment' %}">
+                        <div class=" row justify-content-between">
+                            <div class="col-sm-4 " style="border:2px solid black;">
+                                  <img src="{% static 'polls/img/momo.png' %}" style="width:100%;">
+                            </div>
+                             <div class="col-sm-4 "style="border:2px solid black;">
+                                  <img src="{% static 'polls/img/orange.png' %}" style="width:100%;">
+                            </div>
                         </div>
-                    </div>
+                        <h3 class="text-danger text-center">{{candidate.vote}}Total Bill: 100 cfa</h3>
+                        {% csrf_token %}                           
+                         <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label" >phone number</label>
+                          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="momo or orange money" name="phone_number">
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label"> number of votes</label>
+                          <input type="number" value="1" class="form-control" id="exampleFormControlInput1" placeholder="" 
+                          name="number_votes">
+                        </div>
+                        <div class="mb-3" hidden="true">
+                          <label for="exampleFormControlInput1" class="form-label"> candidate's id</label>
+                          <input type="number" class="form-control" id="exampleFormControlInput1"  name="candidate_id" value={{get_candidate.id}} readonly>
+                        </div>
+                         
+                        <button type="submit" class="btn btn-block text-white" style="background-color: #ffba00;;">vote</button>
+                    </form>
                 </div>
             </div>
         </div>
-        {% endblock%}
-        
+    </div>
+</div>
+{% endblock%}

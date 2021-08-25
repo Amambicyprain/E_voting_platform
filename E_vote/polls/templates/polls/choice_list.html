@@ -1,74 +1,81 @@
 {% extends "polls/base_generic.html" %}
 {% block content %}
-
 {% load static %}
 {% load thumbnail %}
-  <main class="my-5" >
+<main class="my-5">
     <div class="container " style="margin-top:58px">
-      <div class="card mb-3">
-  <div class="card-body ">
-    <p class="card-text text-center">
-      WELCOME TO GOT TALENT VOTING PLATFORM
-    </p>
-  </div>
-</div>
-      <!--Section: Content-->
-      <section class="text-center" >
-        <!-- <h4 class="mb-5"><strong>Latest posts</strong></h4> -->
-
-        <div class="row">
-          {% for candidate in choice_list %}
-          <div class="col-lg-4 col-md-12 mb-4">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <div class="text-start text-muted">
-                  <a href="#!" class="btn btn-floating btn-secondary p-2 disabled " style="background-color:grey; position: absolute; top:5px;">{{candidate.candidate_number}}</a>
+        <div class="card mb-3">
+            <div class="card-body mt-4">
+                <div class="row  d-flex wrapper">
+                    <div class="col-8 ">
+                        <p>WELCOME TO Biggy237 VOTING PLATFORM</p>
+                    </div>
+                    <div class="col-4">
+                        <form method="POST" action=" {% url 'search_candidate' %} ">
+                            <div class="input-group">
+                            <div class="form-outline">
+                                {% csrf_token%}
+                                <input type="search" name="searched_word" id="form1" class="form-control" required />
+                                <label class="form-label" for="form1">Search</label>
+                            </div>
+                            <button type="submit" class="btn text-white" style="background-color: #002e5b;">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        </form>
+                        
+                    </div>
                 </div>
-                <div class="portrait">
-                 {% thumbnail candidate.candidate_image "450x300" as im %}
-                <img src="{{ im.url }}">
-                {% endthumbnail %}
-
-                </div>
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"> <a href="">{{candidate.Choice_text}}</a></h5>
-               
-                <a href="{% url 'payment_page' %}" class="btn text-white" style="background-color: #4a148c;">vote</a>
-              </div>
             </div>
-          </div>
-          {% endfor%}
-        </div>       
-      </section>
-      <!--Section: Content-->
-
-      <!-- Pagination -->
-      <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+        </div>
+        <!--Section: Content-->
+        <section class="text-center">
+            <!-- <h4 class="mb-5"><strong>Latest posts</strong></h4> -->
+            <div class="row">
+                {% for candidate in candidates %}
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <div class="text-start text-muted">
+                                <a href="#!" class="btn btn-floating btn-secondary p-2 disabled " style="background-color:grey; position: absolute; top:5px;">{{candidate.candidate_number}}</a>
+                            </div>
+                            <a href="{% url 'candidate_profile' candidate.id %}">
+                                <div class="portrait">
+                                    {% thumbnail candidate.candidate_image "450x300" as im %}
+                                    <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                </div>
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"> <a href="">{{candidate.candidate_name}}<span>({{candidate.candidate_role}})</span></a></h5>
+                            <a href="{% url 'payment_page' candidate.id %}" class="btn text-white" style="background: #ffba00;">vote</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+            </div>
+        </section>
+        <!--Section: Content-->
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if candidates.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ candidates.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="current">
+                    Page {{ candidates.number }} of {{ candidates.paginator.num_pages }}.
+                </span>
+                {% if candidates.has_next %}
+                <a href="?page={{ candidates.next_page_number }}">next</a>
+                <a href="?page={{ candidates.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
     </div>
-  </main>
-  {% endblock %}
-
-  <!--Main layout-->
-  <!-- MDB -->
-
- 
+</main>
+{% endblock %}
+<!--Main layout-->
+<!-- MDB -->

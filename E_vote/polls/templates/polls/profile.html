@@ -1,0 +1,88 @@
+{% extends "polls/base_generic.html" %}
+{% block content%}
+{% load static %}
+<div class="container mt-5 ">
+    <div class="row d-flex justify-content-end mt-5">
+        <div class="col-xl-10 mt-4  ">
+            <div class="card col ">
+                <img src="https://mdbootstrap.com/img/new/slides/024.jpg" class="card-img-top" alt="..." style="height: 250px; " />
+                <div class="card-body pt-3">
+                    <div class="d-flex align-items-center mb-5">
+                        <div class="flex-shrink-0">
+                            <img src=" {{candidate.candidate_image.url}}" class="rounded-circle" alt="" style="width: 165px; height: 165px; margin-top: -90px; border: 4px solid #fff;" />
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <p class="fw-bold mb-2 h5"> Name : {{candidate.candidate_name}}({{candidate.candidate_role}})</p>
+                            <p class="text-muted mb-0">
+                                <i class="fas fa-map-marker-alt me-2"></i>Yaounde
+                            </p>
+                            <p class="text-muted mb-0">
+                                <b>Number <b> : <span>{{candidate.candidate_number}}</span>
+                            </p>
+                            <p class="text-muted mb-0">
+                                <b>votes <b> : <span>{{candidate.vote}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Tabs navs -->
+                    <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1" role="tab" aria-controls="ex1-tabs-1" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false">Carrier</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-white" href="{% url 'payment_page' candidate.id %}" role="tab" aria-selected="false" style="background: #ffba00;">Vote</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-white" href="{% url 'delete_candidate' candidate.id %}" role="tab" aria-selected="false" style="background: red;">Remove</a>
+                        </li>
+                    </ul>
+                    <!-- Tabs navs -->
+                    <!-- Tabs content -->
+                    <div class="tab-content" id="ex1-content">
+                        <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                            <h5 class="text-warning">Contact info</h5>
+                            <br>
+                            <hr>
+                            <h6>
+                                Date of birth : <br>
+                                {{candidate.candidate_date_birth}}
+                            </h6>
+                            <hr>
+                            <h6> <i class="far fa-envelope"></i>
+                                E-mail : <br>
+                                {{candidate.candidate_email}}
+                            </h6>
+                            <hr>
+                            <h6> <i class="fas fa-mobile-alt"></i>
+                                Phone : <br>
+                                {{candidate.candidate_tel}}
+                            </h6>
+                            <hr>
+                            <h6>
+                                Status : <br>
+                                {{candidate.candidate_status}}
+                            </h6>
+                            <hr>
+                        </div>
+                        <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                            <h5 class="text-warning">carrier history</h5>
+                            <br>
+                            <hr>
+                            <h5>My role is {{candidate.candidate_role}}</h5>
+                            <p>{{candidate.candidate_carrier_history}}</p>
+                        </div>
+                    </div>
+                    <!-- Tabs content -->
+                </div>
+                <div class="card-footer border-0 bg-light py-4 overflow-hidden">
+                    <p class="text-muted">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
