@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import datetime
 from django.http import HttpResponse,Http404
 from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import Paginator
@@ -117,6 +118,8 @@ def search_candidate(request):
 		 'candidate_gotten': candidate_gotten
 		}
 		return render (request, 'polls/search_result.html',context = context)
+	else:
+		return  render (request, 'polls/search_result.html',{})
 
 def delete_candidate(request,candidate_id):
 	candidate = Choice.objects.get(id =candidate_id)
@@ -124,6 +127,26 @@ def delete_candidate(request,candidate_id):
 	print(request.method)
 	return redirect('candidates_page')
 	
+def update_candidate(request,candidate_id):
+	candidate = Choice.objects.get(id=candidate_id )
+	if request.POST:
+		print(request.POST)
+		
+		candidate.candidate_number = request.POST['candidate_number']
+		candidate.candidate_name   = request.POST['candidate_name']
+		candidate.candidate_status   = request.POST['candidate_status']
+		candidate.candidate_email   = request.POST['candidate_email']
+		candidate.candidate_tel   = request.POST['candidate_tel']
+		candidate.candidate_date_birth   = request.POST['candidate_date_birth']
+		candidate.candidate_carrier_history   = request.POST['candidate_carrier_history']
+		
+		if 'candidate_image' in request.FILES:
+			candidate.candidate_image  = request.FILES['candidate_image']
+		candidate.candidate_role   = request.POST['candidate_role']
+		candidate.save()
+		return redirect('candidates_page')
+	return render(request, 'polls/candidate_form_edit.html', { 'candidate':candidate})
+
 
 ############## campay #############################
 campay = Client({

@@ -33,10 +33,13 @@
                             <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false">Carrier</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-white" href="{% url 'payment_page' candidate.id %}" role="tab" aria-selected="false" style="background: #ffba00;">Vote</a>
+                            <a class="nav-link text-white" href="{% url 'payment_page' candidate.id %}" role="tab" aria-selected="false" style="background: #ffba00; border-left: 2px solid black;">Vote</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-white" href="{% url 'delete_candidate' candidate.id %}" role="tab" aria-selected="false" style="background: red;">Remove</a>
+                            <a class="nav-link text-white" href="{% url 'update_candidate' candidate.id %}" role="tab" aria-selected="false" style="background:#ffba00; border-left: 2px solid black; border-right: 2px solid black;"><i class="fas fa-pencil-alt"></i></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-white" href="{% url 'delete_candidate' candidate.id %}" role="tab" aria-selected="false" style="background: red; border-right: 2px solid black;"><i class="fas fa-trash"></i></a>
                         </li>
                     </ul>
                     <!-- Tabs navs -->

@@ -21,7 +21,10 @@ urlpatterns = [
 	path('payment_page/<candidate_id>/', payment_page, name='payment_page'),
 
 	path('candidates/search/', search_candidate, name='search_candidate'),
+
 	path('candidates/delete/<candidate_id>/', delete_candidate, name='delete_candidate'),
+	
+	path('candidates/edit/<candidate_id>/', update_candidate, name='update_candidate'),
 
 ]
 

@@ -46,10 +46,11 @@
                                     {% endthumbnail %}
                                 </div>
                                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                            </a>
+                           
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"> <a href="">{{candidate.candidate_name}}<span>({{candidate.candidate_role}})</span></a></h5>
+                            <h5 class="card-title"> {{candidate.candidate_name}}<span>({{candidate.candidate_role}})</span></h5>
+                             </a>
                             <a href="{% url 'payment_page' candidate.id %}" class="btn text-white" style="background: #ffba00;">vote</a>
                         </div>
                     </div>

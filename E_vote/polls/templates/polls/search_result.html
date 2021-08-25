@@ -14,6 +14,8 @@
         <!--Section: Content-->
         <section class="text-center">
             <!-- <h4 class="mb-5"><strong>Latest posts</strong></h4> -->
+            
+            {% if candidate_gotten%}
             <div class="row">
                 {% for candidate in candidate_gotten %}
                 <div class="col-lg-4 col-md-12 mb-4">
@@ -41,7 +43,10 @@
                 </div>
                 
                 {% endfor%}
-             
+                {% else %}
+                <marquee><h1 class="text-danger">No candidate's name contains the above words</h1></marquee>
+                 {% endif %}
+                
                
             </div>
         </section>
